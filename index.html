@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>My WebAssembly</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .speed{
+        position: fixed;
+        top: 20px;
+        left: 30px;
+        font-family: sans-serif;
+      }
+      .top-speed{
+        position: fixed;
+        top: 40px;
+        left: 30px;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="speed"></p>
+    <p class="top-speed"></p>
+    <canvas id="canvas"></canvas>
+    <script type="text/javascript">
+      var canvas = document.getElementById("canvas");
+      //make the canvas fullscreen
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      //show Emscripten environment where the canvas is
+      var Module = {};
+      Module.canvas = canvas;
+    </script>
+    <script async type="text/javascript" src="hello.js"></script>
+    <script defer type="text/javascript" src="index.js"></script>
+  </body>
+</html>
