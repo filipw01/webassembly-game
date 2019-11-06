@@ -2,6 +2,7 @@ Module["onRuntimeInitialized"] = onRuntimeInitialized;
 function onRuntimeInitialized() {
   const jump = Module.cwrap("jump", "null", []);
   const move = Module.cwrap("move", "null", ["bool"]);
+  
   document.addEventListener("keydown", e => {
     if (e.code == "Space") {
       jump();
