@@ -4,7 +4,7 @@
   "description": "",
   "main": "hello.js",
   "scripts": {
-    "start": "source ~/emsdk/emsdk_env.sh && em++ main.cpp -std=c++11 -s EXPORTED_FUNCTIONS='['_main', '_move', '_jump']' -s EXTRA_EXPORTED_RUNTIME_METHODS='['ccall', 'cwrap']' -o hello.js && python -m SimpleHTTPServer 8080",
+    "start": "source ~/emsdk/emsdk_env.sh && em++ main.cpp -std=c++11 -s EXPORTED_FUNCTIONS='['_main', '_move', '_jump', '_get_player_x', '_get_player_y', '_get_cherry_x', '_get_cherry_y', '_get_speed_x' ,'_get_speed_y', '_get_score']' -s EXTRA_EXPORTED_RUNTIME_METHODS='['ccall', 'cwrap']' -o hello.js && python -m SimpleHTTPServer 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Filip Wachowiak",
