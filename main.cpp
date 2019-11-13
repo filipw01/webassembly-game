@@ -203,4 +203,8 @@ extern "C"
   {
     return score;
   }
+  int get_highest_possible_score()
+  {
+    return possibleMaxScore;
+  }
 }

@@ -9,6 +9,7 @@ function onRuntimeInitialized() {
   const get_speed_x = Module.cwrap("get_speed_x", "number");
   const get_speed_y = Module.cwrap("get_speed_y", "number");
   const get_score = Module.cwrap("get_score", "number");
+  const get_highest_possible_score = Module.cwrap("get_highest_possible_score", "number");
   
   document.addEventListener("keydown", e => {
     if (e.code == "Space") {
