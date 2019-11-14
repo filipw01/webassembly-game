@@ -2104,6 +2104,13 @@ asm["get_score"] = function() {
   return real__get_score.apply(null, arguments);
 };
 
+var real__get_highest_possible_score = asm["get_highest_possible_score"];
+asm["get_highest_possible_score"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return real__get_highest_possible_score.apply(null, arguments);
+};
+
 var real____errno_location = asm["__errno_location"];
 asm["__errno_location"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
@@ -2246,6 +2253,12 @@ var _get_score = Module["_get_score"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
   return Module["asm"]["get_score"].apply(null, arguments)
+};
+
+var _get_highest_possible_score = Module["_get_highest_possible_score"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["get_highest_possible_score"].apply(null, arguments)
 };
 
 var ___errno_location = Module["___errno_location"] = function() {
