@@ -1211,11 +1211,11 @@ function updateGlobalBufferAndViews(buf) {
 }
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 5245344,
+    STACK_BASE = 5245584,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 2464,
-    DYNAMIC_BASE = 5245344,
-    DYNAMICTOP_PTR = 2304;
+    STACK_MAX = 2704,
+    DYNAMIC_BASE = 5245584,
+    DYNAMICTOP_PTR = 2544;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1743,10 +1743,12 @@ var tempI64;
 
 // === Body ===
 
-var ASM_CONSTS = [function($0, $1) {const context2 = new (window.AudioContext || window.webkitAudioContext)(); const osc = context2.createOscillator(); osc.frequency.value = $0; osc.type = "toothsaw"; osc.connect(context2.destination); osc.start(); osc.stop(context2.currentTime + $1);},
+var ASM_CONSTS = [function($0) {document.querySelector(".score-prime-factors").textContent = document.querySelector(".score-prime-factors").textContent + " " + $0;},
+ function($0, $1) {const context2 = new (window.AudioContext || window.webkitAudioContext)(); const osc = context2.createOscillator(); osc.frequency.value = $0; osc.type = "toothsaw"; osc.connect(context2.destination); osc.start(); osc.stop(context2.currentTime + $1);},
  function($0, $1) {document.querySelector(".score").textContent = "Twój wynik : " + $0; document.querySelector(".speed-bonus").textContent = "Bonus za prędkość : " + $1;},
  function() {ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);},
  function($0, $1, $2, $3) {ctx.fillStyle = "red"; ctx.fillRect($2, $3, 10, 10);},
+ function() {document.querySelector(".score-prime-factors").textContent = "Rozkład wyniku na czynniki pierwsze : ";},
  function($0, $1, $2) {ctx.fillStyle = "green"; ctx.fillRect($0, $1 + $2, 100 - $2, 100 - $2);},
  function() {ctx = canvas.getContext("2d");}];
 
@@ -1779,7 +1781,7 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
 
 
 
-// STATICTOP = STATIC_BASE + 1440;
+// STATICTOP = STATIC_BASE + 1680;
 /* global initializers */  __ATINIT__.push({ func: function() { ___wasm_call_ctors() } });
 
 
@@ -1835,7 +1837,7 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
     }
 
   function _emscripten_get_sbrk_ptr() {
-      return 2304;
+      return 2544;
     }
 
   function _emscripten_request_animation_frame(cb, userData) {

@@ -17,6 +17,29 @@ extern "C"
   double position[] = {0.0, 700.0};
   bool perform_jump = false;
 
+  void calculate_prime_factors(int number)
+  {
+    for (int i = 2; i <= sqrt(number); i++)
+    {
+      while (number % i == 0)
+      {
+        EM_ASM_({
+          document.querySelector(".score-prime-factors").textContent = document.querySelector(".score-prime-factors").textContent + " " + $0;
+        },
+                i);
+        number = number / i;
+      }
+    }
+
+    if (number > 2)
+    {
+      EM_ASM_({
+        document.querySelector(".score-prime-factors").textContent = document.querySelector(".score-prime-factors").textContent + " " + $0;
+      },
+              number);
+    }
+  }
+
   double get_random(double min, double max)
   {
     srand(time(NULL));
@@ -103,14 +126,18 @@ extern "C"
 
       if (
           cherry[0] + 10 > position[0] &&
-          cherry[0] < position[0] + 100 - score/2000)
+          cherry[0] < position[0] + 100 - score / 2000)
       {
         if (
-            cherry[1] + 10 > position[1] + score/2000 &&
-            cherry[1] < position[1] + score/2000 + 100 - score/2000)
+            cherry[1] + 10 > position[1] + score / 2000 &&
+            cherry[1] < position[1] + score / 2000 + 100 - score / 2000)
         {
-          speedBonus = speed[0]*speed[0];
+          speedBonus = speed[0] * speed[0];
           score = score + 1000 + speedBonus;
+          EM_ASM_({
+            document.querySelector(".score-prime-factors").textContent = "Rozkład wyniku na czynniki pierwsze : ";
+          });
+          calculate_prime_factors(score);
           if (speedBonus > 750)
           {
             play(3000, 0.1);
@@ -131,7 +158,7 @@ extern "C"
       ctx.fillStyle = "green";
       ctx.fillRect($0, $1 + $2, 100 - $2, 100 - $2);
     },
-            position[0], position[1], score/2000);
+            position[0], position[1], score / 2000);
 
     if (possibleMaxScore != 100)
     {
