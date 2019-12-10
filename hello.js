@@ -1744,7 +1744,7 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = [function($0, $1) {const context2 = new (window.AudioContext || window.webkitAudioContext)(); const osc = context2.createOscillator(); osc.frequency.value = $0; osc.type = "toothsaw"; osc.connect(context2.destination); osc.start(); osc.stop(context2.currentTime + $1);},
- function($0, $1) {document.querySelector(".speed").textContent = "Twój wynik : " + $0; document.querySelector( ".top-speed") .textContent = "Najlepszy możliwy wynik : " + $1;},
+ function($0, $1) {document.querySelector(".score").textContent = "Twój wynik : " + $0; document.querySelector(".speed-bonus").textContent = "Bonus za prędkość : " + $1;},
  function() {ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);},
  function($0, $1, $2, $3) {ctx.fillStyle = "red"; ctx.fillRect($2, $3, 10, 10);},
  function($0, $1, $2) {ctx.fillStyle = "green"; ctx.fillRect($0, $1 + $2, 100 - $2, 100 - $2);},

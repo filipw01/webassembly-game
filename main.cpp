@@ -11,6 +11,7 @@ extern "C"
 {
   int possibleMaxScore = 0;
   int score = 0;
+  int speedBonus = 0;
   double speed[] = {10.5, 2.0};
   int cherry[] = {600, 650};
   double position[] = {0.0, 700.0};
@@ -83,12 +84,10 @@ extern "C"
     position[1] += speed[1];
 
     EM_ASM_({
-      document.querySelector(".speed").textContent = "Twój wynik : " + $0;
-      document.querySelector(
-                  ".top-speed")
-          .textContent = "Najlepszy możliwy wynik : " + $1;
+      document.querySelector(".score").textContent = "Twój wynik : " + $0;
+      document.querySelector(".speed-bonus").textContent = "Bonus za prędkość : " + $1;
     },
-            score, possibleMaxScore + 1);
+            score, speedBonus);
 
     EM_ASM_({
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
@@ -104,14 +103,15 @@ extern "C"
 
       if (
           cherry[0] + 10 > position[0] &&
-          cherry[0] < position[0] + 100 - score)
+          cherry[0] < position[0] + 100 - score/2000)
       {
         if (
-            cherry[1] + 10 > position[1] + score &&
-            cherry[1] < position[1] + score + 100 - score)
+            cherry[1] + 10 > position[1] + score/2000 &&
+            cherry[1] < position[1] + score/2000 + 100 - score/2000)
         {
-          score++;
-          if (score % 10 == 0)
+          speedBonus = speed[0]*speed[0];
+          score = score + 1000 + speedBonus;
+          if (speedBonus > 750)
           {
             play(3000, 0.1);
             play(5000, 0.05);
@@ -131,7 +131,7 @@ extern "C"
       ctx.fillStyle = "green";
       ctx.fillRect($0, $1 + $2, 100 - $2, 100 - $2);
     },
-            position[0], position[1], score);
+            position[0], position[1], score/2000);
 
     if (possibleMaxScore != 100)
     {
@@ -179,30 +179,37 @@ extern "C"
   {
     return position[0];
   }
+
   double get_player_y()
   {
     return position[1];
   }
+
   int get_cherry_x()
   {
     return cherry[0];
   }
+
   int get_cherry_y()
   {
     return cherry[1];
   }
+
   double get_speed_x()
   {
     return speed[0];
   }
+
   double get_speed_y()
   {
     return speed[1];
   }
+
   int get_score()
   {
     return score;
   }
+
   int get_highest_possible_score()
   {
     return possibleMaxScore;
